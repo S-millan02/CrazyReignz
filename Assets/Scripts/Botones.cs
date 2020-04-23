@@ -12,6 +12,6 @@ public class Botones : MonoBehaviour
 	}
 	public void BotonPlay()
 	{
-		SceneManager.LoadScene("Game");
+		SceneManager.LoadScene("Roulette");
 	}
 }
