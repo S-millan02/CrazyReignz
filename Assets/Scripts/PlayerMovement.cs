@@ -11,11 +11,10 @@ public class PlayerMovement : MonoBehaviour
     protected Joybutton joybutton;
 
     //Movement Speed
-    public float Speed =5;
+    public float Speed = 4;
 
     void Start()
     {
-
         //Find Joysticks
         joystick = FindObjectOfType<Joystick>();
         joybutton = FindObjectOfType<Joybutton>();

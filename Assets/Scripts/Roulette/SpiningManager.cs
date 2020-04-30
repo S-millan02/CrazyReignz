@@ -42,18 +42,53 @@ public class SpiningManager : MonoBehaviour {
 
 			//To slow Down Wheel
 			if (i > Mathf.RoundToInt (randVal * 0.2f))
-				timeInterval = 0.5f*Time.deltaTime;
+				timeInterval = 0.1f*Time.deltaTime;
 			if (i > Mathf.RoundToInt (randVal * 0.5f))
-				timeInterval = 1f*Time.deltaTime;
+				timeInterval = 0.2f*Time.deltaTime;
 			if (i > Mathf.RoundToInt (randVal * 0.7f))
-				timeInterval = 1.5f*Time.deltaTime;
+				timeInterval = 0.3f*Time.deltaTime;
 			if (i > Mathf.RoundToInt (randVal * 0.8f))
-				timeInterval = 2f*Time.deltaTime;
+				timeInterval = 0.4f*Time.deltaTime;
 			if (i > Mathf.RoundToInt (randVal * 0.9f))
-				timeInterval = 2.5f*Time.deltaTime;
+				timeInterval = 0.5f*Time.deltaTime;
 
 			yield return new WaitForSeconds (timeInterval);
 
+		}
+
+		switch (finalAngle)
+		{
+			case 0:
+					Debug.Log("1");
+				break;
+
+			case 1:
+				Debug.Log("2");
+				break;
+
+			case 2:
+				Debug.Log("3");
+				break;
+
+			case 3:
+				Debug.Log("4");
+				break;
+
+			case 4:
+				Debug.Log("5");
+				break;
+
+			case 5:
+				Debug.Log("6");
+				break;
+
+			case 6:
+				Debug.Log("7");
+				break;
+
+			case 7:
+				Debug.Log("8");
+				break;
 		}
 
 		if (Mathf.RoundToInt (transform.eulerAngles.z) % totalAngle != 0) //when the indicator stop between 2 numbers,it will add aditional step 

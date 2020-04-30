@@ -6,10 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class Botones : MonoBehaviour
 {
-	public void BotonSalir()
-	{
-		Application.Quit();
-	}
 	public void BotonPlay()
 	{
 		SceneManager.LoadScene("Roulette");
