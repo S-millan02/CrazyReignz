@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - PowerUp
   layers:
   - Default
   - TransparentFX
@@ -13,11 +14,11 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Post
+  - Jugador
+  - "Pu\xF1osJugador"
+  - Enemigo
+  - "Pu\xF1osEnemigo"
   - 
   - 
   - 
