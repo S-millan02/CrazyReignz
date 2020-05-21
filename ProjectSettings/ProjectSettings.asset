@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: Aragan Team Studios
   productName: Crazy Reignz
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -774,10 +774,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: 68d6c2bd-d9a0-4da0-a0b5-60260b650bf8
+  cloudProjectId: 2125b09c-bcf4-4db0-bc40-b4aa37dff57b
   framebufferDepthMemorylessMode: 0
   projectName: Crazy Reignz
-  organizationId: sebas_millan02
+  organizationId: sebastian-mill-n
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
