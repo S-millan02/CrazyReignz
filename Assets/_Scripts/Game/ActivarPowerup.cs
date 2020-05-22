@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ActivarPowerup : MonoBehaviour
 {
+    public AudioClip pow;
+
     public enum power { velocidad, fuerza, vida }
     public power powerUp;
 }

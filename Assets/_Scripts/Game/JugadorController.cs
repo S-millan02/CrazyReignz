@@ -37,6 +37,11 @@ public class JugadorController : MonoBehaviour
 
     private float val = 10;
 
+    [Space]
+    public AudioSource source;
+    public AudioClip dash;
+    public AudioClip golp;
+
     private void Awake()
     {
         dashSlider.value = 0;
@@ -77,6 +82,7 @@ public class JugadorController : MonoBehaviour
         anim.SetBool("golpeando", on);
         undidoBtn = on;
         anim2.SetBool("Punch", on);
+        source.PlayOneShot(golp);
     }
 
     public void Dash()
@@ -85,6 +91,7 @@ public class JugadorController : MonoBehaviour
         {
             dashSlider.value = 0;
             rb.AddForce(transform.forward * poderDash, ForceMode.Impulse);
+            source.PlayOneShot(dash);
         }
     }
 
@@ -172,6 +179,7 @@ public class JugadorController : MonoBehaviour
                 default:
                     break;
             }
+            source.PlayOneShot(aP.pow);
             Destroy(other.gameObject);
         }
     }

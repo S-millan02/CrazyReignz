@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Advertisements;
 
-[RequireComponent(typeof(Button))]
 public class RewardedAdsButton : MonoBehaviour, IUnityAdsListener
 {
 
@@ -14,26 +13,26 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsListener
     private string gameId = "3615068";
 #endif
 
-    Button myButton;
+    public Button myButton;
     public string myPlacementId = "rewardedVideo";
+    public GiroController gController;
 
-    void Start()
+    private void Awake()
     {
-        myButton = GetComponent<Button>();
+        myButton.gameObject.SetActive(false);
+    }
 
-        // Set interactivity to be dependent on the Placement’s status:
+    public void CargarBoton()
+    {
         myButton.interactable = Advertisement.IsReady(myPlacementId);
-
-        // Map the ShowRewardedVideo function to the button’s click listener:
+        myButton.gameObject.SetActive(true);
         if (myButton) myButton.onClick.AddListener(ShowRewardedVideo);
-
-        // Initialize the Ads listener and service:
         Advertisement.AddListener(this);
         Advertisement.Initialize(gameId, true);
     }
 
     // Implement a function for showing a rewarded video ad:
-    void ShowRewardedVideo()
+    public void ShowRewardedVideo()
     {
         Advertisement.Show(myPlacementId);
     }
@@ -55,6 +54,10 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsListener
         {
             // Reward the user for watching the ad to completion.
             Debug.Log("Ha ganado la recompensa");
+            gController.vioVideo = true;
+            gController.Girar();
+            gController.bPrincipal.interactable = false;
+            myButton.gameObject.SetActive(false);
         }
 
         else if (showResult == ShowResult.Skipped)

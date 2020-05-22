@@ -10,6 +10,7 @@ public class EnemigoController : MonoBehaviour
     public float fuerzaGolpe = 4;
     public float vida = 100;
     public float valorGolpe = 4;
+    public SkinnedMeshRenderer mRender;
     private Material mat;
     private Color col;
     private float colV;
@@ -17,6 +18,7 @@ public class EnemigoController : MonoBehaviour
     public Transform Jugador;
     private NavMeshAgent agent;
     private Animator anim;
+    public Animator anim2;
 
     public bool tocando;
     private bool esperaGolpe;
@@ -31,7 +33,7 @@ public class EnemigoController : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        mat = GetComponent<MeshRenderer>().material;
+        mat = mRender.material;
         rb = GetComponent<Rigidbody>();
         aim = GetComponent<AimConstraint>();
         mr = GetComponent<MeshRenderer>();
@@ -47,6 +49,7 @@ public class EnemigoController : MonoBehaviour
             if (vida <= 0)
             {
                 Debug.Log("Muerte " + name);
+                anim2.SetInteger("Condition", 0);
                 //gameObject.SetActive(false);
                 agent.enabled = false;
                 mat.SetColor("_BaseColor", Color.black);
@@ -82,7 +85,7 @@ public class EnemigoController : MonoBehaviour
 
             if (esperaGolpe)
             {
-                esperaF -= Time.unscaledDeltaTime;
+                esperaF -= Time.deltaTime * 4;
             }
             else
             {
@@ -91,6 +94,7 @@ public class EnemigoController : MonoBehaviour
             if (esperaF < 0)
             {
                 anim.SetBool("golpeando", true);
+                anim2.SetBool("Punch", true);
                 for (int i = 0; i < choques.Count; i++)
                 {
                     choques[i].GetComponentInParent<JugadorController>().CambiarVida(-valorGolpe);
@@ -101,6 +105,7 @@ public class EnemigoController : MonoBehaviour
             else if (esperaF < 0.9f)
             {
                 anim.SetBool("golpeando", false);
+                anim2.SetBool("Punch", false);
             }
         }
     }

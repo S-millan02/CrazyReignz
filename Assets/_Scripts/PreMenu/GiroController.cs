@@ -19,6 +19,15 @@ public class GiroController : MonoBehaviour
     [Space]
     public int aF;
     public float vl;
+    [Space]
+    public RewardedAdsButton rButton;
+    public TextMeshProUGUI rButtonText;
+    public Button bPrincipal;
+    private int toques = 0;
+    public bool vioVideo;
+    [Space]
+    public AudioSource source;
+    public AudioClip vfxS;
 
     private void Awake()
     {
@@ -27,11 +36,30 @@ public class GiroController : MonoBehaviour
 
     public void Girar()
     {
-        finalPower.text = "...";
-        circulo.localEulerAngles = new Vector3(0, 0, 0);
-        tiempo = 0.1f;
-        valorG = Random.Range(minVal, maxVal);
-        iniciar = true;
+        toques += 1;
+        if (toques == 1)
+        {
+            finalPower.text = "...";
+            circulo.localEulerAngles = new Vector3(0, 0, 0);
+            tiempo = 0.1f;
+            valorG = Random.Range(minVal, maxVal);
+            iniciar = true;
+            source.PlayOneShot(vfxS);
+        }
+        else if (toques >= 2 && !vioVideo)
+        {
+            Initiate.Fade("Game", Color.black, 1);
+        }
+        else if (toques >= 2 && vioVideo)
+        {
+            finalPower.text = "...";
+            circulo.localEulerAngles = new Vector3(0, 0, 0);
+            tiempo = 0.1f;
+            valorG = Random.Range(minVal, maxVal);
+            iniciar = true;
+            source.PlayOneShot(vfxS);
+            vioVideo = false;
+        }
     }
 
     private void Update()
@@ -74,12 +102,12 @@ public class GiroController : MonoBehaviour
             if (a <= 0)
             {
                 iniciar = false;
-                StartCoroutine(Finalizar());
+                Finalizar();
             }
         }
     }
 
-    IEnumerator Finalizar()
+    public void Finalizar()
     {
         switch (aF)
         {
@@ -101,8 +129,10 @@ public class GiroController : MonoBehaviour
                 finalPower.text = "Ningun poder inicial";
                 break;
         }
-        yield return new WaitForSecondsRealtime(3);
+        rButton.CargarBoton();
+        bPrincipal.interactable = true;
+        rButtonText.text = "Continuar?";
+        finalPower.text = finalPower.text + "\n" + "o puedes:";
         JugadorController.poderInicial = aF;
-        Initiate.Fade("Game", Color.black, 1);
     }
 }
